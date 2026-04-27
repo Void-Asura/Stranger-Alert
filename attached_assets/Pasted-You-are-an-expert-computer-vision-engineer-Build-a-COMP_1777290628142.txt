@@ -1,0 +1,123 @@
+You are an expert computer vision engineer. Build a COMPLETE, production-ready Python application called:
+"Real-Time Laptop Privacy Protection System"
+The system must run continuously using a webcam and detect if any person other than the authorized user (me) appears in the frame. If detected, it should trigger a system notification.
+________________________________________
+🎯 CORE OBJECTIVE
+•	Recognize the authorized user (ME)
+•	Detect ANY additional person (UNKNOWN)
+•	Trigger a system notification if ANY unknown face is detected
+•	This applies regardless of distance or whether the person is looking at the screen
+________________________________________
+🧠 FUNCTIONAL REQUIREMENTS
+1.	FACE DETECTION
+•	Use MediaPipe or OpenCV DNN (fast and reliable)
+•	Detect all faces in real time
+2.	FACE RECOGNITION (CRITICAL)
+•	Use DeepFace (preferred)
+•	Implement ENROLLMENT MODE:
+o	Capture 5–10 images of the authorized user via webcam
+o	Generate and store embeddings locally (JSON or pickle)
+•	RUNTIME:
+o	Compare detected faces with stored embeddings
+o	Use cosine similarity or Euclidean distance
+o	Default threshold: 0.6 (configurable)
+3.	IDENTITY LOGIC
+•	If ONLY authorized user present → SAFE
+•	If ANY unknown face present → ALERT
+•	Even if the unknown person is far away or not looking at the screen → ALERT
+4.	STABILITY CHECK
+•	Unknown face must persist for at least 1 second before triggering alert
+•	Prevent flickering or false triggers
+5.	STATE-BASED ALERT SYSTEM (VERY IMPORTANT)
+•	Maintain system state: SAFE / ALERT
+•	Trigger notification ONLY when state changes from SAFE → ALERT
+•	Do NOT spam notifications
+6.	ALERT COOLDOWN
+•	Minimum 5 seconds between alerts
+________________________________________
+🔔 NOTIFICATION SYSTEM
+•	Use plyer (cross-platform)
+•	Show system notification:
+Title: "Privacy Alert"
+Message: "Unknown person detected in camera view"
+•	Notification must appear even if program is minimized
+•	Optional: include short beep sound
+________________________________________
+🎥 DEBUG MODE (VERY IMPORTANT)
+•	Include a global flag:
+DEBUG = True / False
+•	If DEBUG = True:
+o	Show webcam window using cv2.imshow()
+o	Draw bounding boxes:
+	Green → "YOU"
+	Red → "UNKNOWN"
+o	Show labels on top of boxes
+o	Allow exit using 'q' key
+•	If DEBUG = False:
+o	NO window should open
+o	Program runs silently in background
+o	Only notifications should appear
+________________________________________
+📦 BOUNDING BOX & LABEL REQUIREMENTS
+•	Draw rectangles around faces
+•	Use:
+o	Green color for authorized user
+o	Red color for unknown person
+•	Add label text:
+o	"YOU" or "UNKNOWN"
+•	Add filled rectangle behind text for readability
+________________________________________
+⚡ PERFORMANCE OPTIMIZATION (MANDATORY)
+•	Resize frame to 0.5 scale before processing
+•	Process every 2–3 frames (frame skipping)
+•	Avoid unnecessary computations if no faces detected
+•	Load and cache authorized embeddings once
+•	Maintain minimum 15 FPS performance on CPU
+________________________________________
+🧩 PROJECT STRUCTURE
+•	main.py (entry point)
+•	config.py (all parameters like DEBUG, thresholds, cooldown)
+•	face_recognition_module.py
+•	detection_module.py
+•	notification_module.py
+•	utils.py
+________________________________________
+⚙️ CONFIG PARAMETERS
+•	DEBUG = True/False
+•	recognition_threshold = 0.6
+•	alert_cooldown = 5 seconds
+•	detection_confidence = 0.7
+•	camera_index = 0
+________________________________________
+💾 STORAGE
+•	Store face embeddings locally (file-based)
+•	Must persist across runs
+________________________________________
+🧪 EDGE CASE HANDLING
+•	No face detected → SAFE
+•	Multiple unknown faces → still only one alert
+•	Partial face visibility → try best recognition
+•	Handle low lighting without crashing
+________________________________________
+🛠️ EXECUTION REQUIREMENTS
+•	Run using:
+python main.py
+•	Program should work when minimized in VS Code
+•	No user interaction required after start
+________________________________________
+📦 OUTPUT REQUIRED
+1.	Full working code (all modules)
+2.	requirements.txt
+3.	Step-by-step setup instructions:
+o	install dependencies
+o	run enrollment
+o	start system
+4.	Clean, well-commented code
+________________________________________
+🚫 STRICT RULES
+•	Do NOT give partial code
+•	Do NOT skip modules
+•	Do NOT leave placeholders
+•	Everything must run without modification
+________________________________________
+Now generate the COMPLETE working system.
